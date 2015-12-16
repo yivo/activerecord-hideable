@@ -40,6 +40,3 @@ module Toggleable
     end
   end
 end
-
-
-
