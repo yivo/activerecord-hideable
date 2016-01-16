@@ -1,13 +1,8 @@
 module Hideable
   module ColumnTypes
-    def toggle(*args)
-      options = args.extract_options!.reverse_merge!(null: false, index: true)
-      args.each { |name| column(name, :boolean, options) }
-    end
-
-    # Commonly used
-    def hideable_toggle(column = Hideable.default_column, **options)
-      toggle(column, options.reverse_merge!(default: false))
+    def toggle(column_name = Hideable.default_column, **options)
+      options.reverse_merge!(null: false, default: false, index: true)
+      column(column_name, :boolean, options)
     end
   end
 end
