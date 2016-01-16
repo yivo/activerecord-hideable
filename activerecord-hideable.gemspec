@@ -1,13 +1,13 @@
 # encoding: utf-8
 
 Gem::Specification.new do |s|
-  s.name            = 'activerecord-toggleable'
+  s.name            = 'activerecord-hideable'
   s.version         = '1.0.0'
   s.authors         = ['Yaroslav Konoplov']
   s.email           = ['yaroslav@inbox.com']
-  s.summary         = 'ActiveRecord toggleable extension'
-  s.description     = 'ActiveRecord toggleable extension'
-  s.homepage        = 'http://github.com/yivo/activerecord-toggleable'
+  s.summary         = 'ActiveRecord hideable'
+  s.description     = 'ActiveRecord hideable'
+  s.homepage        = 'http://github.com/yivo/activerecord-hideable'
   s.license         = 'MIT'
 
   s.executables     = `git ls-files -z -- bin/*`.split("\x0").map{ |f| File.basename(f) }
