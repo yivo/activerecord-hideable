@@ -10,12 +10,12 @@ module Essay
   end
 
   class AttributeFeatures
-    def hideable_toggle?
+    def toggle?
       model_features.hideable? && model_class.hideable_options.fetch(:toggle) == attribute_name
     end
 
     serialize do
-      { is_hideable_toggle: hideable_toggle? }
+      { is_toggle: toggle? }
     end
   end
 end

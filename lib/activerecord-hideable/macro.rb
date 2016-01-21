@@ -9,7 +9,8 @@ module Hideable
       # end
       #
       def acts_as_hideable(options = {})
-        toggle = options.fetch(:toggle, Hideable.default_column)
+        options.reverse_merge!(toggle: Hideable.default_column)
+        toggle = options[:toggle]
 
         scope :hidden, -> { where(toggle => true)  }
         scope :shown,  -> { where(toggle => false) }
