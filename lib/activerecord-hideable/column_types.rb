@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Hideable
   module ColumnTypes
     def toggle(column_name = Hideable.default_column, **options)
