@@ -6,7 +6,7 @@ require 'active_record'
 require 'activerecord-traits'
 
 require 'activerecord-hideable/macro'
-require 'activerecord-hideable/column_types'
+require 'activerecord-hideable/migration'
 
 begin
   require 'essay'
