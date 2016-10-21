@@ -1,12 +1,18 @@
+# encoding: utf-8
 # frozen_string_literal: true
-require 'active_support/all'
+
+require 'active_support/concern'
 require 'active_record'
-require 'attribute-defaults'
 require 'activerecord-traits'
 
 require 'activerecord-hideable/macro'
 require 'activerecord-hideable/column_types'
-require 'activerecord-hideable/essay' if defined?(Essay)
+
+begin
+  require 'essay'
+  require 'activerecord-hideable/essay'
+rescue LoadError
+end
 
 module Hideable
   class << self
@@ -16,7 +22,10 @@ module Hideable
   self.default_column = :hidden
 end
 
-module ActiveRecord
-  Base.include Hideable::Macro
-  ConnectionAdapters::TableDefinition.include Hideable::ColumnTypes
+class ActiveRecord::Base
+  include Hideable::Macro
+end
+
+class ActiveRecord::ConnectionAdapters::TableDefinition
+  include Hideable::Migration
 end

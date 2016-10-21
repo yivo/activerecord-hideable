@@ -10,5 +10,5 @@
 
 ## Gemfile
 ```ruby
-gem 'activerecord-hideable', github: 'yivo/activerecord-hideable'
+gem 'activerecord-hideable', '~> 1.0'
 ```

@@ -1,8 +1,10 @@
+# encoding: utf-8
 # frozen_string_literal: true
+
 module Essay
   class ModelFeatures
     def hideable?
-      !!model_class.try(:hideable_options)
+      model_class.respond_to?(:hideable_options)
     end
 
     serialize do
