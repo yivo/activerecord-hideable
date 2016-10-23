@@ -4,7 +4,7 @@
 module Essay
   class ModelFeatures
     def hideable?
-      model_class.respond_to?(:hideable_options)
+      !!active_record.hideable?
     end
 
     serialize do
@@ -14,7 +14,7 @@ module Essay
 
   class AttributeFeatures
     def toggle?
-      model_features.hideable? && model_class.hideable_options.fetch(:toggle) == attribute_name
+      active_record.features.hideable? && attribute.name == :hidden
     end
 
     serialize do

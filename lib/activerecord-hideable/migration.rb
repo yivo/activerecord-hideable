@@ -3,9 +3,8 @@
 
 module Hideable
   module Migration
-    def toggle(column_name = Hideable.default_column, **options)
-      options.reverse_merge!(null: false, default: false, index: true)
-      column(column_name, :boolean, options)
+    def toggle(options = {})
+      column :hidden, :boolean, options.reverse_merge!(null: false, default: false, index: true)
     end
   end
 end

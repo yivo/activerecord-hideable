@@ -5,27 +5,22 @@ module Hideable
   module Macro
     extend ActiveSupport::Concern
 
+    included { class_attribute :hideable }
+
     module ClassMethods
       #
       # class Article < ActiveRecord::Base
-      #   acts_as_hideable toggle: :hidden
+      #   acts_as_hideable
       # end
       #
-      def acts_as_hideable(options = {})
-        options.reverse_merge!(toggle: Hideable.default_column)
-        toggle = options[:toggle]
+      def acts_as_hideable
+        scope :hidden, -> { where(hidden: true)  }
+        scope :shown,  -> { where(hidden: false) }
 
-        scope :hidden, -> { where(toggle => true)  }
-        scope :shown,  -> { where(toggle => false) }
+        define_method(:shown?) { !hidden }
 
-        define_method(:shown?)  {  !self[toggle] }
-        define_method(:hidden?) { !!self[toggle] } unless toggle == :hidden
-
-        unless respond_to?(:hideable_options)
-          class_attribute :hideable_options, instance_accessor: false, instance_predicate: false
-        end
-
-        self.hideable_options = options
+        self.hideable = true
+        nil
       end
     end
   end

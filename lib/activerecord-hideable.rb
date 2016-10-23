@@ -3,7 +3,6 @@
 
 require 'active_support/concern'
 require 'active_record'
-require 'activerecord-traits'
 
 require 'activerecord-hideable/macro'
 require 'activerecord-hideable/migration'
@@ -12,14 +11,6 @@ begin
   require 'essay'
   require 'activerecord-hideable/essay'
 rescue LoadError
-end
-
-module Hideable
-  class << self
-    attr_accessor :default_column
-  end
-
-  self.default_column = :hidden
 end
 
 class ActiveRecord::Base
